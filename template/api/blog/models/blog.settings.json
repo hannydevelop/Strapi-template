@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "name": "Blog"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Blog_title": {
+      "type": "string"
+    },
+    "Blog_description": {
+      "type": "text"
+    },
+    "Blog_content": {
+      "type": "text"
+    }
+  }
+}
