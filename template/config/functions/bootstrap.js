@@ -58,7 +58,7 @@ const createEntry = async ({ model, entry, files }) => {
 const importBlogs = async () => {
   return Promise.all(
     blogs.map((blog) => {
-      return createEntry({ model: "blogs", entry: blog });
+      return createEntry({ model: "blog", entry: blog });
     })
   );
 }
