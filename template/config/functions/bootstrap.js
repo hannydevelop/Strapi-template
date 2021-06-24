@@ -42,7 +42,7 @@ const isFirstRun = async () => {
   return !initHasRun;
 };
 
-async function createEntry({ model, entry, files }) {
+const createEntry = async ({ model, entry, files }) => {
   try {
     const createdEntry = await strapi.query(model).create(entry);
     if (files) {
@@ -55,7 +55,7 @@ async function createEntry({ model, entry, files }) {
   }
 }
 
-async function importBlogs() {
+const importBlogs = async () => {
   return Promise.all(
     blogs.map((blog) => {
       return createEntry({ model: "blogs", entry: blog });
