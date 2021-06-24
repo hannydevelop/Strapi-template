@@ -1,4 +1,6 @@
 "use strict";
+
+const { blogs } = require("../../data/data.json");
 /**
  * An asynchronous bootstrap function that runs before
  * your application gets started.
@@ -40,9 +42,31 @@ const isFirstRun = async () => {
   return !initHasRun;
 };
 
+async function createEntry({ model, entry, files }) {
+  try {
+    const createdEntry = await strapi.query(model).create(entry);
+    if (files) {
+      await strapi.entityService.uploadFiles(createdEntry, files, {
+        model,
+      });
+    }
+  } catch (e) {
+    console.log("model", entry, e);
+  }
+}
+
+async function importBlogs() {
+  return Promise.all(
+    blogs.map((blog) => {
+      return createEntry({ model: "blogs", entry: blog });
+    })
+  );
+}
+
 module.exports = async () => {
   const shouldSetDefaultPermissions = await isFirstRun();
   if (shouldSetDefaultPermissions) {
     await setDefaultPermissions();
+    await importBlogs();
   }
 };
