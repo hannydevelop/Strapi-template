@@ -66,6 +66,7 @@ async function importBlogs() {
 module.exports = async () => {
   const shouldSetDefaultPermissions = await isFirstRun();
   if (shouldSetDefaultPermissions) {
+    await setDefaultPermissions();
     await importBlogs();
   }
 };
