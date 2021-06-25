@@ -1,5 +1,8 @@
 "use strict";
 
+const fs = require("fs");
+const path = require("path");
+
 const { blogs } = require("../../data/data.json");
 /**
  * An asynchronous bootstrap function that runs before
