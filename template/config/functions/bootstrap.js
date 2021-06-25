@@ -63,10 +63,17 @@ const importBlogs = async () => {
   );
 }
 
+async function importSeedData() {
+  // Allow read of application content types
+  await setDefaultPermissions();
+
+  // Create all entries
+  await importBlogs();
+}
+
 module.exports = async () => {
-  const shouldSetDefaultPermissions = await isFirstRun();
   if (shouldSetDefaultPermissions) {
-    await setDefaultPermissions() && await importBlogs();
+    await importSeedData();
   }
 };
 
