@@ -71,9 +71,10 @@ async function importSeedData() {
   await importBlogs();
 }
 
+// Add importSeedData to isFirstRun so that data is imported once at first run.
 module.exports = async () => {
   const shouldSetDefaultPermissions = await isFirstRun();
-  
+
   if (shouldSetDefaultPermissions) {
     await importSeedData();
   }
