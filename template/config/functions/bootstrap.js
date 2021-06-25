@@ -72,6 +72,8 @@ async function importSeedData() {
 }
 
 module.exports = async () => {
+  const shouldSetDefaultPermissions = await isFirstRun();
+  
   if (shouldSetDefaultPermissions) {
     await importSeedData();
   }
